@@ -5,7 +5,7 @@
 namespace PF_n
 {
   /*
-    Konstruktor
+    Construktor
   */
   transmitter_c::channel_c::channel_c() :
     _actualMessageLength( 0 ),
@@ -23,7 +23,7 @@ namespace PF_n
   }
 
   /*
-    Werte initialisieren
+    Initialize values
   */
   void transmitter_c::channel_c::init( int pin, channel_t channel )
   {
@@ -32,7 +32,7 @@ namespace PF_n
   }
 
   /*
-    Liefert die Dauer eines Zyklus
+    Get length of a cycle
   */
   unsigned int transmitter_c::channel_c::cycleLength()
   {
@@ -40,7 +40,7 @@ namespace PF_n
   }
 
   /*
-    Liefert die maximale Dauer einer Nachricht
+   Get maximum length of a message
   */
   unsigned int transmitter_c::channel_c::maximumMessageLength()
   {
@@ -48,7 +48,7 @@ namespace PF_n
   }
 
   /*
-    Eine bestimmte Anzahl von Zyklen warten
+    Wait (cycles)
   */
   void transmitter_c::channel_c::pauseCycles( unsigned int cycles ) const
   {
@@ -56,7 +56,7 @@ namespace PF_n
   }
 
   /*
-    Eine bestimmte Anzahl von Zyklen warten
+    Wait (miliseconds)
   */
   void transmitter_c::channel_c::pauseTime( unsigned int waitTime ) const
   {
@@ -65,7 +65,7 @@ namespace PF_n
   }
 
   /*
-    Nachricht senden
+    Send message
   */
   void transmitter_c::channel_c::sendMessage()
   {
@@ -105,7 +105,7 @@ namespace PF_n
   }
 
   /*
-    Werte nach dem Senden einer Nachricht zurücksetzen
+    Reset values after message was send
   */
   void transmitter_c::channel_c::endMessage()
   {
@@ -113,7 +113,7 @@ namespace PF_n
          _mode == MODE_COMBO_DIRECT ||
          ( _mode == MODE_SINGLE_OUTPUT && ( _data == SINGLE_OUTPUT_CSTID_FULL_FORWARD || _data == SINGLE_OUTPUT_CSTID_FULL_BACKWARD ) ) )
     {
-      // Nachricht bein nächsten Durchgang erneut senden
+      // Send message again in next cycle
     }
     else
     {
@@ -128,7 +128,7 @@ namespace PF_n
   }
 
   /*
-    Setzt eine Nachricht für den Combo-Direct-Mode
+    Set a message for Combo-Direct-Mode
   */
   void transmitter_c::channel_c::setMessageComboDirect( comboDirectOutput_t outputA, comboDirectOutput_t outputB )
   {
@@ -138,7 +138,7 @@ namespace PF_n
   }
 
   /*
-    Setzt eine Nachricht für den Combo-PWM-Mode
+    Set a message for Combo-PWM-Mode
   */
   void transmitter_c::channel_c::setMessageComboPWM( pwmOutput_t outputA, pwmOutput_t outputB )
   {
@@ -148,7 +148,7 @@ namespace PF_n
   }
 
   /*
-    Setzt eine Nachricht für den Extended-Mode
+    Set a message for Extended-Mode
   */
   void transmitter_c::channel_c::setMessageExtended( extendedData_t data )
   {
@@ -157,7 +157,7 @@ namespace PF_n
   }
 
   /*
-    Setzt eine Nachricht für den Single-Output-CSTID-Mode
+    Set a message for Single-Output-CSTID-Mode
   */
   void transmitter_c::channel_c::setMessageSingleOutputCstid( singleOutput_t output, singleOutputCstid_t data )
   {
@@ -168,7 +168,7 @@ namespace PF_n
   }
 
   /*
-    Setzt eine Nachricht für den Single-Output-PWM-Mode
+    Set a message for Single-Output-PWM-Mode
   */
   void transmitter_c::channel_c::setMessageSingleOutputPWM( singleOutput_t output, pwmOutput_t data )
   {
@@ -179,7 +179,7 @@ namespace PF_n
   }
 
   /*
-    Address-Bit senden
+    Send address-bit
   */
   void transmitter_c::channel_c::writeAddress() const
   {
@@ -187,7 +187,7 @@ namespace PF_n
   }
 
   /*
-    Kanal senden
+    Send channel
   */
   void transmitter_c::channel_c::writeChannel() const
   {
@@ -195,7 +195,7 @@ namespace PF_n
   }
 
   /*
-    Nutzdaten senden
+    Send payload
   */
   void transmitter_c::channel_c::writeData() const
   {
@@ -210,7 +210,7 @@ namespace PF_n
   }
 
   /*
-    Checksumme berechnen
+    Calculate checksum
   */
   void transmitter_c::channel_c::writeLRC() const
   {
@@ -218,7 +218,7 @@ namespace PF_n
   }
 
   /*
-    Escape-Bit senden
+    Send escape-bit
   */
   void transmitter_c::channel_c::writeEscape() const
   {
@@ -229,7 +229,7 @@ namespace PF_n
   }
 
   /*
-    Ein High-Bit senden
+   Send a high-bit
   */
   void transmitter_c::channel_c::writeHighBit() const
   {
@@ -239,7 +239,7 @@ namespace PF_n
   }
 
   /*
-    Ein Low-Bit senden
+    Send a low-bit
   */
   void transmitter_c::channel_c::writeLowBit() const
   {
@@ -249,7 +249,7 @@ namespace PF_n
   }
 
   /*
-    Start/Stop Bit senden
+    Send start/stop bit
   */
   void transmitter_c::channel_c::writeStartStopBit() const
   {
@@ -259,7 +259,7 @@ namespace PF_n
   }
 
   /*
-    Eine IR-Mark senden
+    Send IR-mark
   */
   void transmitter_c::channel_c::writeMark() const
   {
@@ -275,7 +275,7 @@ namespace PF_n
   }
 
   /*
-    Den Modus senden
+    Send mode
   */
   void transmitter_c::channel_c::writeMode() const
   {
@@ -304,7 +304,7 @@ namespace PF_n
   }
 
   /*
-    Die gesammelten Nibbles senden
+    Send all nibbles
   */
   void transmitter_c::channel_c::writeNibbles() const
   {
@@ -326,7 +326,7 @@ namespace PF_n
   }
 
   /*
-    Daten des Combo-PWM-Mode senden
+    Send data for Combo-PWM-Mode
   */
   void transmitter_c::channel_c::writePwmOutput() const
   {
@@ -335,7 +335,7 @@ namespace PF_n
   }
 
   /*
-    Toggle-Bit senden
+    Send toggle-bit
   */
   void transmitter_c::channel_c::writeToggle() const
   {
@@ -346,7 +346,7 @@ namespace PF_n
   }
 
   /*
-    Konstruktor
+    Constructor
   */
   transmitter_c::transmitter_c( int pin ) :
     _pin( pin )
@@ -358,7 +358,7 @@ namespace PF_n
   }
 
   /*
-    Nachrichten auf allen vier Kanälen senden
+   Send messages an all four channels
   */
   void transmitter_c::sendMessages()
   {
@@ -398,7 +398,7 @@ namespace PF_n
   }
 
   /*
-    Setzt eine Nachricht für den Combo-Direct-Mode
+    Set a message for Combo-Direct-Mode
   */
   void transmitter_c::setMessageComboDirect( channel_t channel, comboDirectOutput_t outputA, bool inverseOutputA,
                                              comboDirectOutput_t outputB, bool inverseOutputB )
@@ -408,7 +408,7 @@ namespace PF_n
   }
 
   /*
-    Setzt eine Nachricht für den Combo-PWM-Mode
+    Set a message for Combo-PWM-Mode
   */
   void transmitter_c::setMessageComboPWM( channel_t channel, pwmOutput_t outputA, bool inverseOutputA,
                                           pwmOutput_t outputB, bool inverseOutputB )
@@ -417,7 +417,7 @@ namespace PF_n
   }
 
   /*
-    Setzt eine Nachricht für den Extended-Mode
+    Set a message for Extended-Mode
   */
   void transmitter_c::setMessageExtended( channel_t channel, extendedData_t data )
   {
@@ -425,7 +425,7 @@ namespace PF_n
   }
 
   /*
-    Setzt eine Nachricht für Single-Output-CSTID-Mode
+    Set a message for Single-Output-CSTID-Mode
   */
   void transmitter_c::setMessageSingleOutputCstid( channel_t channel, singleOutput_t output, singleOutputCstid_t data )
   {
@@ -433,7 +433,7 @@ namespace PF_n
   }
 
   /*
-    Setzt eine Nachricht für Single-Output-PWM-Mode
+    Set a message for Single-Output-PWM-Mode
   */
   void transmitter_c::setMessageSingleOutputPWM( channel_t channel, singleOutput_t output, pwmOutput_t data, bool inverse )
   {
@@ -441,7 +441,7 @@ namespace PF_n
   }
 
   /*
-    Richtung einer PWM-Nachricht umkehren
+    Invert direction of a PWM message
   */
   transmitter_c::pwmOutput_t transmitter_c::inversePwm( pwmOutput_t value, bool inverse )
   {
@@ -471,7 +471,7 @@ namespace PF_n
   }
 
   /*
-    Richtung einer Combo-Direct-Nachricht umkehren
+    Invert direction of a Combo-Direct message
   */
   transmitter_c::comboDirectOutput_t transmitter_c::inverseComboDirect( comboDirectOutput_t value, bool inverse )
   {
